@@ -1,2 +1,4 @@
-# Auto detect text files and perform LF normalization
-* text=auto
+# VBA export files are kept in Windows Japanese code page for direct import.
+# Git converts them to UTF-8 in the repository index so GitHub can display them correctly.
+*.bas working-tree-encoding=CP932
+*.cls working-tree-encoding=CP932
