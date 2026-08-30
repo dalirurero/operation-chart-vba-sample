@@ -1,12 +1,12 @@
 # Operation Chart VBA Sample
 
-Excel VBAで、外部データの取込からマスタ照合、作業割当、個人別指示書・作業編成表の作成までを行うサンプルです。
+Excel VBAで、納品データ・納品予定データの取込からマスタ照合、作業割当、個人別指示書・作業編成表の作成までを行うサンプルです。
 
 実務で使用した業務ツールの構成をベースに、GitHub公開用としてデータ・名称を匿名化したものです。会社名、店舗名、実際の商品コード、従業員名、数量などの実データは含みません。
 
 ## 主な機能
 
-- 外部Excelファイルの取込
+- 納品データ・納品予定データ（外部Excelファイル）の取込
 - 納品日の確認
 - 参照CDの自動生成
 - エリアマスタとの照合
@@ -22,7 +22,7 @@ Excel VBAで、外部データの取込からマスタ照合、作業割当、�
 ## 処理の流れ
 
 ```text
-外部データ
+納品データ / 納品予定データ
    ↓
 データ取込
    ↓
@@ -116,20 +116,18 @@ operation-chart-vba-sample/
 
 ## セットアップ
 
-`OperationChart_Sample.xlsm` は公開用テンプレートです。GitHub上でVBAコードを確認・差分管理できるよう、VBAソースは `src/` に分離しています。`.bas` / `.cls` はExcelへの取り込みを考慮してCP932で保存し、`.gitattributes` の `working-tree-encoding` でGitHub上ではUTF-8として扱える構成にしています。
+`OperationChart_Sample.xlsm` には、動作に必要なVBAがあらかじめ組み込まれています。  
+`src/` フォルダには、GitHub上でVBAコードを確認できるよう、同じVBAソースをテキストファイルとして収録しています。
 
-1. `OperationChart_Sample.xlsm` と `SEND_SAMPLE.xlsx`、`SEND3_SAMPLE.xlsx` を同じフォルダに置きます。
+1. `sample/` フォルダ内のファイルを同じフォルダに配置します。
 2. Excelで `OperationChart_Sample.xlsm` を開きます。
-3. VBAエディタで `src/` の `.bas` ファイルをインポートします。
-4. `ThisWorkbook.cls` の `Workbook_Open` の内容を、ブックの `ThisWorkbook` モジュールへ反映します。
-5. 次の公開マクロを実行します。
-   - `ImportReceivingData`
-   - `PrintIndividualInstructions`
-   - `PrintWorkAssignmentSheet`
+3. マクロが無効になっている場合は、マクロを有効にします。
+4. `MF` シートの「入荷データ取込」ボタンから、納品データ・納品予定データを取り込みます。
+5. 作業編成画面で担当者を設定し、必要に応じて指示書・作業編成表を印刷します。
 
-サンプルブック内のフォームボタンは、上記3マクロへの割当を想定しています。
+VBAを実行するために、`src/` の `.bas` / `.cls` ファイルを手動でインポートする必要はありません。
 
-> 注: この配布パッケージ自体にはコンパイル済みVBAプロジェクトを埋め込んでいません。VBAソースをGitHubでレビューしやすい形にするため、コードをテキストファイルとして分離しています。
+`src/` は、VBAの構成や実装内容をGitHub上で確認するために収録しています。
 
 ## 日付について
 
